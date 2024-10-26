@@ -1,16 +1,30 @@
 'use client'
 
 import { useRef } from 'react';
-import { Chart as ChartJS } from 'chart.js';
+import { Chart as ChartJS, ChartOptions } from 'chart.js';
 import { Chart as PrimeChart } from 'primereact/chart';
+import { LineAnnotationOptions } from 'chartjs-plugin-annotation';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
+interface TypedChartOptions extends ChartOptions {
+    plugins: {
+        annotation: {
+            annotations: {
+                line1: LineAnnotationOptions;
+            };
+        };
+    };
+}
+
+
+type TypedChart = ChartJS<'line', number[], unknown> & { options: TypedChartOptions };
+
 const Chart = () => {
 
-    const chart = useRef(null);
+    const chart = useRef<PrimeChart | null>(null);
 
     const chartData = {
         labels: [
@@ -814,7 +828,7 @@ const Chart = () => {
             x: {
                 ticks: {
                     color: '#fff',
-                    callback: (tickValue, index) => {
+                    callback: (tickValue: object, index: number) => {
                         if ( index === 0) {
                             return new Date(chartData.labels[0]).toLocaleTimeString();
                         } else if (index === 130) {
@@ -858,8 +872,8 @@ const Chart = () => {
         animation: {
             duration: 0,
         },
-        onHover: (event) => {
-            const _chart = chart.current.getChart();
+        onHover: (event: MouseEvent) => {
+            const _chart = chart?.current?.getChart();
             const xPos = event.x; // Отримуємо позицію миші на осі x
 
             const xScale = _chart.scales['x']; // Отримуємо шкалу x
@@ -872,9 +886,9 @@ const Chart = () => {
 
     const removeLine = {
         id: 'removeLine',
-        beforeEvent(chart, args) {
+        beforeEvent(chart: TypedChart, args: {event:{type: string}}) {
             if (args.event.type === 'mouseout') {
-                chart.options.plugins.annotation.annotations.line1.value = null;
+                chart.options.plugins.annotation.annotations.line1.value = undefined;
                 chart.update(); // Оновлюємо графік
             }
         }

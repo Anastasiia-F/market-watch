@@ -1,6 +1,6 @@
 import { Avatar } from 'primereact/avatar';
 import { Menu } from 'primereact/menu';
-import { useRef } from 'react';
+import { SyntheticEvent, useRef } from 'react';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 
@@ -8,7 +8,7 @@ const UserMenu = () => {
     const menuRef = useRef<Menu | null>(null);
     const menuToast = useRef<Toast | null>(null);
 
-    const clickHandler = (event) => menuRef.current?.toggle(event);
+    const clickHandler = (event: SyntheticEvent) => menuRef.current?.toggle(event);
 
     const items = [
         {

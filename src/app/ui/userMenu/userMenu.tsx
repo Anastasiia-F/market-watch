@@ -37,7 +37,7 @@ const UserMenu = () => {
                 plain
                 aria-controls="popup_menu_left"
                 aria-haspopup>
-                <Avatar image="inverted_avatar.png"
+                <Avatar image="avatar.png"
                         className="mr-2 ml-2"
                         shape="circle"
                         size="normal" />

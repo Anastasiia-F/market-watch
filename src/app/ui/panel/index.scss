@@ -1,0 +1,23 @@
+.panel {
+  overflow: hidden;
+  position: relative;
+
+  transition: height ease-in 0.3s;
+
+  &-bg {
+    background: linear-gradient(#12121200, rgb(18 18 18));
+    content: '';
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+
+    transition: opacity ease-in 0.3s;
+  }
+
+  .p-button {
+    min-width: 105px;
+  }
+}

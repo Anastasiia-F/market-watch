@@ -6,7 +6,7 @@ import HeaderSearch from '@/app/ui/headrSearch/headrSearch';
 const Header = () => {
     const items = [
         {
-            label: 'Home',
+            label: 'About us',
             url: '#'
         },
         {

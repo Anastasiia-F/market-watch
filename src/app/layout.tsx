@@ -22,7 +22,14 @@ export default function RootLayout({
               <header className="">
                   <Header />
               </header>
-            {children}
+
+              <main className="container mx-auto max-w-screen-xl">
+                  {children}
+              </main>
+
+              <footer className="container mx-auto max-w-screen-xl">
+
+              </footer>
           </body>
         </html>
   );

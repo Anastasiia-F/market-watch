@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import "primereact/resources/themes/mdc-dark-indigo/theme.css";
 import 'primeicons/primeicons.css';
+import Header from '@/app/ui/header';
 
 
 
@@ -18,6 +19,9 @@ export default function RootLayout({
   return (
         <html lang="en">
           <body className="antialiased">
+              <header className="">
+                  <Header />
+              </header>
             {children}
           </body>
         </html>

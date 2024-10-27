@@ -1,3 +1,4 @@
+'use client';
 import { Image } from 'primereact/image';
 import { Menubar } from 'primereact/menubar';
 import UserMenu from '@/app/ui/userMenu/userMenu';
@@ -6,8 +7,8 @@ import HeaderSearch from '@/app/ui/headrSearch/headrSearch';
 const Header = () => {
     const items = [
         {
-            label: 'Home',
-            url: '#'
+            label: 'About us',
+            url: '/aboutus',
         },
         {
             label: 'Blog',

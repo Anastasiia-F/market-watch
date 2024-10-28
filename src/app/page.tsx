@@ -1,8 +1,8 @@
 "use client"
 
 import { Fragment } from 'react';
-import Chart from '@/app/ui/chart/chart';
-import Panel from '@/app/ui/panel/panel';
+import Chart from '@/app/components/chart/chart';
+import Panel from '@/app/components/panel/panel';
 
 
 export default function Home() {

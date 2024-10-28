@@ -1,8 +1,8 @@
 'use client';
 import { Image } from 'primereact/image';
 import { Menubar } from 'primereact/menubar';
-import UserMenu from '@/app/ui/userMenu/userMenu';
-import HeaderSearch from '@/app/ui/headrSearch/headrSearch';
+import UserMenu from '@/app/components/userMenu/userMenu';
+import HeaderSearch from '@/app/components/headrSearch/headrSearch';
 import Link from 'next/link';
 
 const Header = () => {

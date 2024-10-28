@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import "primereact/resources/themes/mdc-dark-indigo/theme.css";
 import 'primeicons/primeicons.css';
-import Header from '@/app/ui/header';
+import Header from '@/app/components/header';
 
 
 

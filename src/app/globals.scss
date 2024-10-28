@@ -17,12 +17,19 @@
 
 body {
   font-family: Lato, sans-serif;
+  padding-top: 94px;
+  position: relative;
 }
 
 
 header {
   background-color: #1e1e1e;
   margin-bottom: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 h1, h2 {

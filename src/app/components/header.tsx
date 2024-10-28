@@ -4,6 +4,7 @@ import { Menubar } from 'primereact/menubar';
 import UserMenu from '@/app/components/userMenu/userMenu';
 import HeaderSearch from '@/app/components/headrSearch/headrSearch';
 import Link from 'next/link';
+import { Button } from 'primereact/button';
 
 const Header = () => {
     const items = [
@@ -19,6 +20,7 @@ const Header = () => {
 
     const end = (
         <div className="flex align-items-center gap-2 ml-8">
+            <Button label="Subscribe" severity="warning" rounded />
             <UserMenu />
             <HeaderSearch />
         </div>

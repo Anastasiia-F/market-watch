@@ -1,15 +1,16 @@
-'use client'
-
-import { useRef } from 'react';
-import { Chart as ChartJS, ChartOptions } from 'chart.js';
-import { Chart as PrimeChart } from 'primereact/chart';
+import React, { useRef } from 'react';
+import { Line } from "react-chartjs-2";
+import { CategoryScale, ChartEvent } from "chart.js";
+import ChartJS from "chart.js/auto";
+import { ChartOptions, Chart as ChartType } from 'chart.js';
 import { LineAnnotationOptions } from 'chartjs-plugin-annotation';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
+ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-interface TypedChartOptions extends ChartOptions {
+interface TypedChartOptions extends ChartOptions<'line'> {
     plugins: {
         annotation: {
             annotations: {
@@ -20,11 +21,10 @@ interface TypedChartOptions extends ChartOptions {
 }
 
 
-type TypedChart = ChartJS<'line', number[], unknown> & { options: TypedChartOptions };
+type TypedChart = ChartType<'line', number[], unknown> & { options: TypedChartOptions };
 
 const Chart = () => {
-
-    const chart = useRef<PrimeChart | null>(null);
+    const chart = useRef<TypedChart | null>(null);
 
     const chartData = {
         labels: [
@@ -819,16 +819,16 @@ const Chart = () => {
             borderColor: 'rgba(159, 168, 218)',
             borderWidth: 1,
             pointRadius: 0,
-            label: false,
+            label: '',
         }],
     }
 
-    const chartOptions = {
+    const chartOptions: ChartOptions<'line'> = {
         scales: {
             x: {
                 ticks: {
                     color: '#fff',
-                    callback: (tickValue: object, index: number) => {
+                    callback: (tickValue: string | number, index: number) => {
                         if ( index === 0) {
                             return new Date(chartData.labels[0]).toLocaleTimeString();
                         } else if (index === 130) {
@@ -857,11 +857,10 @@ const Chart = () => {
                 annotations: {
                     line1: {
                         type: 'line',
-                        mod: 'vertical',
                         scaleID: 'x',
                         borderColor: 'rgb(255, 99, 132)',
                         borderWidth: 1,
-                        value: null,
+                        value: undefined,
                     }
                 }
             },
@@ -872,15 +871,15 @@ const Chart = () => {
         animation: {
             duration: 0,
         },
-        onHover: (event: MouseEvent) => {
-            const _chart = chart?.current?.getChart();
-            const xPos = event.x; // Отримуємо позицію миші на осі x
+        onHover: (event: ChartEvent) => {
+            const _chart = chart!.current;
+            const xPos = event!.x; // Отримуємо позицію миші на осі x
 
-            const xScale = _chart.scales['x']; // Отримуємо шкалу x
-             // Конвертуємо піксель в значення шкали
-            // Оновлюємо позицію анотації
-            _chart.options.plugins.annotation.annotations.line1.value = xScale.getValueForPixel(xPos);
-            _chart.update(); // Оновлюємо графік
+            const xScale = _chart!.scales['x']; // Отримуємо шкалу x
+            if (xPos) {
+                _chart!.options.plugins.annotation.annotations.line1.value = xScale.getValueForPixel(xPos);
+                _chart!.update(); // Оновлюємо графік
+            }
         },
     }
 
@@ -895,11 +894,13 @@ const Chart = () => {
     };
 
     return (
-        <PrimeChart ref={chart}
-                    type="line"
-                    data={chartData}
-                    options={chartOptions}
-                    plugins={[removeLine]} />
+        <div className="chart-wrap">
+            <Line ref={chart}
+                  className="chart"
+                  data={chartData}
+                  options={chartOptions}
+                  plugins={[removeLine]} />
+        </div>
     );
 };
 

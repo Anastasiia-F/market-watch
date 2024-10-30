@@ -3,15 +3,14 @@ import { Line } from "react-chartjs-2";
 import ChartJS, { TooltipItem } from "chart.js/auto";
 import { ChartOptions, Plugin, CategoryScale, ChartEvent, } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { xData, yData } from './chartData';
-import { IChart } from './models';
+import { IChart, IChartData } from './models';
 import backgroundPlugin from './backgroundPlugin';
 
 ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-const Chart = () => {
+const Chart: React.FC<IChartData> = ({ xData, yData }) => {
     const chart = useRef<IChart | null>(null);
 
     const chartData = {
@@ -84,9 +83,7 @@ const Chart = () => {
                 }
             }
         },
-        animation: {
-            duration: 0,
-        },
+        animation: false,
         onHover: (event: ChartEvent) => {
             const _chart = chart!.current;
             const xPos = event!.x; // Отримуємо позицію миші на осі x
@@ -94,17 +91,19 @@ const Chart = () => {
             const xScale = _chart!.scales['x']; // Отримуємо шкалу x
             if (xPos) {
                 _chart!.options.plugins.annotation.annotations.line1.value = xScale.getValueForPixel(xPos);
-                _chart!.update(); // Оновлюємо графік
+                _chart!.update('none'); // Оновлюємо графік
             }
         },
     }
 
     const removeLine: Plugin = {
         id: 'removeLine',
-        beforeEvent(chart: IChart, args: {event:{type: string}}) {
+        beforeEvent(chart: IChart, args: {event: {type: string}}) {
             if (args.event.type === 'mouseout') {
-                chart.options.plugins.annotation.annotations.line1.value = undefined;
-                chart.update();
+                setTimeout(() => {
+                    chart.options.plugins.annotation.annotations.line1.value = undefined;
+                    chart.update();
+                }, 0);
             }
         }
     };

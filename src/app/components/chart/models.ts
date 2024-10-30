@@ -12,4 +12,9 @@ interface IChartOptions extends ChartOptions<'line'> {
 }
 type IChart = Chart<'line', number[], unknown> & { options: IChartOptions };
 
-export type { IChartOptions, IChart };
+interface IChartData {
+    xData: number[];
+    yData: number[];
+}
+
+export type { IChartOptions, IChart, IChartData };

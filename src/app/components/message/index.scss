@@ -1,0 +1,19 @@
+.p-toast-message {
+  background: rgba(59, 130, 246, 0.2);
+  backdrop-filter: blur(10px);
+  border: solid #8dd0ff;
+  border-width: 0 0 0 6px;
+  color: #93c5fd;
+
+  &-icon {
+    color: #93c5fd;
+  }
+
+  button {
+    color: #93c5fd;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

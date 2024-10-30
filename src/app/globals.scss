@@ -5,6 +5,7 @@
 @import "components/userMenu";
 @import "components/chart";
 @import "components/panel";
+@import "components/message";
 
 @layer tailwind-base {
   @tailwind base;
@@ -15,9 +16,14 @@
   @tailwind utilities;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   background-color: var(--surface-ground);
   font-family: Lato, sans-serif;
+  line-height: normal;
   padding-top: 94px;
   position: relative;
 }

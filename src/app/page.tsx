@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import Chart from '@/app/components/chart/chart';
 import Panel from '@/app/components/panel/panel';
 import { xData, yData} from '@/app/components/chart/chartData';
+import Message from '@/app/components/message/message';
 
 export default function Home() {
     return (
@@ -45,6 +46,7 @@ export default function Home() {
                     </div>
                 </Panel>
             </section>
+            <Message />
         </Fragment>
     );
 }

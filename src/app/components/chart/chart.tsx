@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Line } from "react-chartjs-2";
 import ChartJS, { TooltipItem } from "chart.js/auto";
-import { ChartOptions, Plugin, CategoryScale, ChartEvent, } from 'chart.js';
+import { ChartOptions, Plugin, CategoryScale, ChartEvent, ChartData, } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { IChart, IChartData } from './models';
 import backgroundPlugin from './backgroundPlugin';
@@ -24,7 +24,7 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
             pointRadius: 0,
             label: '',
         }],
-    }
+    } as ChartData<'line'>;
 
     const chartOptions: ChartOptions<'line'> = {
         scales: {
@@ -33,16 +33,24 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
                     color: '#fff',
                     callback: (tickValue: string | number, index: number) => {
                         const step = 2 * 60 * 60 * 1000;
-                        if (index === 0) {
-                            return new Date(chartData.labels[0]).toLocaleTimeString([], { timeStyle: 'short' });
-                        } else if (chartData.labels[index] === chartData.labels[0] + step) {
-                            return new Date(chartData.labels[index]).toLocaleTimeString([], { timeStyle: 'short' });
-                        } else if (chartData.labels[index] === chartData.labels[0] + step * 2) {
-                            return new Date(chartData.labels[index]).toLocaleTimeString([], { timeStyle: 'short' });
-                        } else if (chartData.labels[index] === chartData.labels[0] + step * 3) {
-                            return new Date(chartData.labels[index]).toLocaleTimeString([], { timeStyle: 'short' });
-                        } else if (chartData.labels[index] === chartData.labels[0] + step * 4) {
-                            return new Date(chartData.labels[index]).toLocaleTimeString([], { timeStyle: 'short' });
+                        if (chartData.labels) {
+                            const label = chartData.labels[index] as number;
+                            const label0 = chartData.labels[0] as number;
+                            if (index === 0) {
+                                return new Date(label0).toLocaleTimeString([], {timeStyle: 'short'});
+                            }
+                            else if (label === label0 + step) {
+                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                            }
+                            else if (label === label0 + step * 2) {
+                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                            }
+                            else if (label === label0 + step * 3) {
+                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                            }
+                            else if (label === label0 + step * 4) {
+                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                            }
                         }
                     }
                 }

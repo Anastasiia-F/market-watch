@@ -10,7 +10,7 @@ const Message = () => {
             detail: 'This website is currently under development. All data displayed is for testing purposes only and not real.',
             sticky: true
         });
-    });
+    }, []);
 
     return (<Toast ref={toast} position="bottom-right" />);
 };

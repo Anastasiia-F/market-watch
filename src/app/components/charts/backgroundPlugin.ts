@@ -1,9 +1,9 @@
 import { Plugin } from 'chart.js';
-import { IChart } from './models';
+import { ILineChart } from './models';
 
 const backgroundPlugin: Plugin = {
     id: 'backgroundPlugin',
-    beforeDatasetsDraw(chart: IChart): boolean | void {
+    beforeDatasetsDraw(chart: ILineChart): boolean | void {
         const {ctx, chartArea: { top, height},
             scales: {x}} = chart;
 

@@ -3,15 +3,15 @@ import { Line } from "react-chartjs-2";
 import ChartJS, { TooltipItem } from "chart.js/auto";
 import { ChartOptions, Plugin, CategoryScale, ChartEvent, ChartData, } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { IChart, IChartData } from './models';
+import { ILineChart, IChartData } from './models';
 import backgroundPlugin from './backgroundPlugin';
 
 ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-const Chart: React.FC<IChartData> = ({ xData, yData }) => {
-    const chart = useRef<IChart | null>(null);
+const LineChart: React.FC<IChartData> = ({ xData, yData, className }) => {
+    const chart = useRef<ILineChart | null>(null);
 
     const chartData = {
         labels: xData,
@@ -37,19 +37,19 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
                             const label = chartData.labels[index] as number;
                             const label0 = chartData.labels[0] as number;
                             if (index === 0) {
-                                return new Date(label0).toLocaleTimeString([], {timeStyle: 'short'});
+                                return new Date(label0).toLocaleTimeString('en-US', {timeStyle: 'short'});
                             }
                             else if (label === label0 + step) {
-                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                                return new Date(label).toLocaleTimeString('en-US', {timeStyle: 'short'});
                             }
                             else if (label === label0 + step * 2) {
-                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                                return new Date(label).toLocaleTimeString('en-US', {timeStyle: 'short'});
                             }
                             else if (label === label0 + step * 3) {
-                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                                return new Date(label).toLocaleTimeString('en-US', {timeStyle: 'short'});
                             }
                             else if (label === label0 + step * 4) {
-                                return new Date(label).toLocaleTimeString([], {timeStyle: 'short'});
+                                return new Date(label).toLocaleTimeString('en-US', {timeStyle: 'short'});
                             }
                         }
                     }
@@ -58,7 +58,7 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
             y: {
                 ticks: {
                     color: '#fff',
-                    maxTicksLimit: 3,
+                    count: 3,
                 }
             }
         },
@@ -106,7 +106,7 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
 
     const removeLine: Plugin = {
         id: 'removeLine',
-        beforeEvent(chart: IChart, args: {event: {type: string}}) {
+        beforeEvent(chart: ILineChart, args: {event: {type: string}}) {
             if (args.event.type === 'mouseout') {
                 setTimeout(() => {
                     chart.options.plugins.annotation.annotations.line1.value = undefined;
@@ -117,7 +117,7 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
     };
 
     return (
-        <div className="chart-wrap">
+        <div className={`chart-wrap ${className}`}>
             <Line ref={chart}
                   className="chart"
                   data={chartData}
@@ -127,4 +127,4 @@ const Chart: React.FC<IChartData> = ({ xData, yData }) => {
     );
 };
 
-export default Chart;
+export default LineChart;

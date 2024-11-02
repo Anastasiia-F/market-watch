@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "components/headrSearch";
 @import "components/userMenu";
-@import "components/chart";
+@import "components/charts";
 @import "components/panel";
 @import "components/message";
 
@@ -53,14 +53,18 @@ h1 {
 h2 {
   color: var(--primary-color);
   margin-bottom: 10px;
+  font-size: 18px;
   position: relative;
+
+  .label {
+    margin-right: 20px;
+  }
 
   .bg {
     background: repeating-linear-gradient(135deg,rgba(225, 225, 225, 0.5),rgba(225, 225, 225, 0.5) 1px,transparent 2px,transparent 3px);
     background-size: 4px 4px;
     content:'';
     height: 4px;
-    margin: 0 20px;
   }
 }
 
@@ -88,6 +92,34 @@ button {
 
   p {
     font-size: 16px;
+  }
+}
+
+.card-wrap {
+  .p-card {
+    opacity: 0.75;
+    margin-bottom: 31px;
+    transition: all linear 0.3s;
+
+    &-active {
+      opacity: 1;
+      background-color: #273549;
+    }
+  }
+
+  .p-card-body {
+    padding: 15px;
+
+    .p-card-title {
+      margin-bottom: 2px;
+    }
+
+    .p-card-subtitle {
+      margin-bottom: 7px;
+    }
+  }
+  .p-card-content {
+    padding: 0;
   }
 }
 

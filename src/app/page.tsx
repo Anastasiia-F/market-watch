@@ -17,10 +17,10 @@ const GDOWData = GDOW.Series[0].DataPoints.flat();
 
 export default function Home() {
 
-    const [blocl_1, setBlock_1] = useState(false);
-    const [blocl_2, setBlock_2] = useState(false);
-    const [blocl_3, setBlock_3] = useState(false);
-    const [blocl_4, setBlock_4] = useState(false);
+    const [block_1, setBlock_1] = useState(false);
+    const [block_2, setBlock_2] = useState(false);
+    const [block_3, setBlock_3] = useState(false);
+    const [block_4, setBlock_4] = useState(false);
 
     const makeBlockActive = (index: number) => {
         switch(index) {
@@ -87,25 +87,25 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="card-wrap w-[50%]">
-                        <Card className={classNames({ 'p-card-active': blocl_1 })} title="First block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': block_1 })} title="First block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': blocl_2 })} title="Second block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': block_2 })} title="Second block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': blocl_3 })} title="Third block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': block_3 })} title="Third block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': blocl_4 })} title="Fourth block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': block_4 })} title="Fourth block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!

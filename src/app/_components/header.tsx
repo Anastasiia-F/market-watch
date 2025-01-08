@@ -1,8 +1,8 @@
 'use client';
 import { Image } from 'primereact/image';
 import { Menubar } from 'primereact/menubar';
-import UserMenu from '@/app/components/userMenu/userMenu';
-import HeaderSearch from '@/app/components/headrSearch/headrSearch';
+import UserMenu from '@/app/_components/userMenu/userMenu';
+import HeaderSearch from '@/app/_components/headrSearch/headrSearch';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 import 'primeicons/primeicons.css';
-import Header from '@/app/components/header';
+import Header from '@/app/_components/header';
+import ReactQueryProvider from '@/app/_utils/providers/ReactQueryProvider';
 
 
 

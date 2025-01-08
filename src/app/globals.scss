@@ -1,11 +1,11 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 @import 'primereact/resources/themes/saga-blue/theme.css' layer(primereact);
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import "components/headrSearch";
-@import "components/userMenu";
-@import "components/charts";
-@import "components/panel";
-@import "components/message";
+@import "_components/headrSearch";
+@import "_components/userMenu";
+@import "_components/charts";
+@import "_components/panel";
+@import "_components/message";
 
 @layer tailwind-base {
   @tailwind base;

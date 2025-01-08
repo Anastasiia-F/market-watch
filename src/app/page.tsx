@@ -1,13 +1,13 @@
 "use client"
 
 import React, { Fragment, useState } from 'react';
-import LineChart from '@/app/components/charts/lineChart';
+import LineChart from '@/app/_components/charts/lineChart';
 import classNames from 'classnames';
-import DJIA from '@/app/components/charts/chartsData/DJIA.json';
-import NASDAQ from '@/app/components/charts/chartsData/NASDAQ.json';
-import GDOW from '@/app/components/charts/chartsData/GDOW.json';
-import Message from '@/app/components/message/message';
-import BarChart from '@/app/components/charts/barChart';
+import DJIA from '@/app/_components/charts/chartsData/DJIA.json';
+import NASDAQ from '@/app/_components/charts/chartsData/NASDAQ.json';
+import GDOW from '@/app/_components/charts/chartsData/GDOW.json';
+import Message from '@/app/_components/message/message';
+import BarChart from '@/app/_components/charts/barChart';
 import { Card } from 'primereact/card';
 
 const DJIAData = DJIA.Series[0].DataPoints.flat();
@@ -50,10 +50,10 @@ export default function Home() {
                 break;
 
             default:
-                    setBlock_1(false);
-                    setBlock_2(false);
-                    setBlock_3(false);
-                    setBlock_4(false);
+                setBlock_1(false);
+                setBlock_2(false);
+                setBlock_3(false);
+                setBlock_4(false);
         }
 
     };

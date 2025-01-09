@@ -9,6 +9,10 @@ import { Button } from 'primereact/button';
 const Header = () => {
     const items = [
         {
+            label: 'SpaceX GraphQL API',
+            url: '/launches',
+        },
+        {
             label: 'About us',
             url: '/aboutus',
         },

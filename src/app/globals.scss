@@ -1,12 +1,4 @@
-@layer tailwind-base, primereact, tailwind-utilities;
-@import 'primereact/resources/themes/saga-blue/theme.css' layer(primereact);
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import "_components/headrSearch";
-@import "_components/userMenu";
-@import "_components/charts";
-@import "_components/panel";
-@import "_components/message";
-
+@layer tailwind-base, tailwind-utilities, primereact;
 @layer tailwind-base {
   @tailwind base;
 }
@@ -15,6 +7,15 @@
   @tailwind components;
   @tailwind utilities;
 }
+@import 'primereact/resources/themes/saga-blue/theme.css' layer(primereact);
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import "_components/headrSearch";
+@import "_components/userMenu";
+@import "_components/charts";
+@import "_components/panel";
+@import "_components/message";
+
+
 
 html {
   font-size: 14px;
@@ -123,3 +124,37 @@ button {
   }
 }
 
+.card {
+  background: #1f2937;
+  border: 0 none;;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem
+}
+
+.p-dataview .p-dataview-content {
+  background: #1f2937;
+  color: rgba(255, 255, 255, 0.87);
+  border: 0 none;
+  padding: 0;
+}
+
+.border-round {
+  border-radius: var(--border-radius)!important
+}
+
+.border-1 {
+  border-width: 1px!important;
+  border-style: solid
+}
+
+.surface-border {
+  border-color: rgba(255, 255, 255, 0.1)!important;
+}
+
+.surface-card {
+  transition: background-color linear 0.2s;
+  &:hover {
+    background-color: #303844FF !important;
+  }
+}

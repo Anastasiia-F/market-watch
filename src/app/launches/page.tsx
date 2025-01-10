@@ -4,6 +4,7 @@ import { gql, request } from 'graphql-request'
 import React from 'react';
 import { DataView } from 'primereact/dataview';
 import Link from 'next/link';
+import { ILaunch } from '@/app/launches/models';
 const API_URL = `https://spacex-production.up.railway.app/`;
 
 const variables = {
@@ -29,6 +30,10 @@ const fragment = gql`
         id
     }
 `;
+
+interface IResponse {
+    [key: string]: ILaunch;
+}
 
 const document = gql`
     ${fragment}
@@ -74,31 +79,33 @@ const document = gql`
 `;
 
 const Launches = () => {
-    const { data, isPending } = useQuery({
+    const { data, isPending } = useQuery<ILaunch[]>({
     queryKey: ['launches'],
-    queryFn: async () => {
-        const response = await request(API_URL, document, variables);
-        const result = [];
+    queryFn: async (): Promise<Array<ILaunch>> => {
+        const response = await request<IResponse>(API_URL, document, variables);
+        const result:Array<ILaunch> = [];
         for (const item in response) {
             result.push(response[item]);
         }
         return result;
-    }
-    });
+    },
+    staleTime: 1000 * 60 * 10,
+});
 
     if(isPending) {
         return <p>Loading...</p>
     }
 
-    const gridItem = (product) => {
+    const gridItem = (product: ILaunch) => {
         return (
             <Link
                 href={`/launches/${product.id}`}
                 className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
                 <div className="p-4 border-1 surface-border surface-card border-round">
                     <div className="flex flex-column align-items-center gap-3 py-5">
-                        <img className="w-9 shadow-2 border-round" src={product.links.flickr_images[1]}
-                             alt={product.name}/>
+                        <img className="w-9 shadow-2 border-round"
+                               src={product.links.flickr_images[1]}
+                               alt={product.mission_name}/>
                         <div className="text-2xl font-bold">{product.mission_name}</div>
                     </div>
                     <div className="flex align-items-center justify-content-between">
@@ -109,7 +116,7 @@ const Launches = () => {
         );
     };
 
-    const listTemplate = (products) => {
+    const listTemplate = (products: Array<ILaunch>) => {
         return (
             <div className="grid grid-nogutter">
                 {
@@ -121,7 +128,7 @@ const Launches = () => {
     return (
         <div className="card">
             <h1 className="text-3xl">SpaceX Launches</h1>
-            <DataView value={data} listTemplate={listTemplate} layout="grid" />
+            <DataView value={data as [never]} listTemplate={listTemplate} layout="grid" />
         </div>
     )
 }

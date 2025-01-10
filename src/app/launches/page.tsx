@@ -92,7 +92,9 @@ const Launches = () => {
 
     const gridItem = (product) => {
         return (
-            <Link href={`/launches/${product.id}`} className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
+            <Link
+                href={`/launches/${product.id}`}
+                className="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" key={product.id}>
                 <div className="p-4 border-1 surface-border surface-card border-round">
                     <div className="flex flex-column align-items-center gap-3 py-5">
                         <img className="w-9 shadow-2 border-round" src={product.links.flickr_images[1]}

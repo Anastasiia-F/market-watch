@@ -12,14 +12,14 @@ const Header = () => {
             label: 'SpaceX GraphQL API',
             url: '/launches',
         },
-        {
+/*        {
             label: 'About us',
             url: '/aboutus',
         },
         {
             label: 'Blog',
             url: '/blog'
-        }
+        }*/
     ];
 
     const end = (

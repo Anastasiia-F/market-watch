@@ -14,48 +14,25 @@ const DJIAData = DJIA.Series[0].DataPoints.flat();
 const NASDAQData = NASDAQ.Series[0].DataPoints.flat();
 const GDOWData = GDOW.Series[0].DataPoints.flat();
 
+interface Blocks {
+    [key: string]: boolean;
+}
 
 export default function Home() {
 
-    const [block_1, setBlock_1] = useState(false);
-    const [block_2, setBlock_2] = useState(false);
-    const [block_3, setBlock_3] = useState(false);
-    const [block_4, setBlock_4] = useState(false);
+    const [blocks, setBlocks] = useState<Blocks>({
+        block_0: false,
+        block_1: false,
+        block_2: false,
+        block_3: false,
+    });
 
-    const makeBlockActive = (index: number) => {
-        switch(index) {
-            case 0:
-                setBlock_1(true);
-                setBlock_2(false);
-                setBlock_3(false);
-                setBlock_4(false);
-                break;
-            case 1:
-                setBlock_1(false);
-                setBlock_2(true);
-                setBlock_3(false);
-                setBlock_4(false);
-                break;
-            case 2:
-                setBlock_1(false);
-                setBlock_2(false);
-                setBlock_3(true);
-                setBlock_4(false);
-                break;
-            case 3:
-                setBlock_1(false);
-                setBlock_2(false);
-                setBlock_3(false);
-                setBlock_4(true);
-                break;
-
-            default:
-                setBlock_1(false);
-                setBlock_2(false);
-                setBlock_3(false);
-                setBlock_4(false);
-        }
-
+    const makeBlockActive = (id: number) => {setBlocks({
+            block_0: id === 0,
+            block_1: id === 1,
+            block_2: id === 2,
+            block_3: id === 3,
+        });
     };
 
     return (

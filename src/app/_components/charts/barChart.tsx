@@ -3,13 +3,13 @@ import { Bar } from "react-chartjs-2";
 import ChartJS, { ActiveElement } from "chart.js/auto";
 import { ChartOptions, Plugin, CategoryScale, ChartEvent, ChartData } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { ILineChart, IChartData, IBarChart } from './models';
+import { ILineChart, IBarChartData, IBarChart } from './models';
 
 ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-const BarChart: React.FC<IChartData> = ({ xData, yData, className, callBack }) => {
+const BarChart: React.FC<IBarChartData> = ({ xData, yData, callBack }) => {
     const chart = useRef<IBarChart | null>(null);
 
     const chartData = {
@@ -115,7 +115,7 @@ const BarChart: React.FC<IChartData> = ({ xData, yData, className, callBack }) =
     };
 
     return (
-        <div className={`chart-wrap ${className}`}>
+        <div className='chart-wrap grow h-[100%]'>
             <Bar ref={chart}
                   className="chart"
                   data={chartData}

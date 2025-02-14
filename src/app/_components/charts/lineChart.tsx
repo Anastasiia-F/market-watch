@@ -10,7 +10,7 @@ ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-const LineChart: React.FC<IChartData> = ({ xData, yData, className }) => {
+const LineChart: React.FC<IChartData> = ({ xData, yData }) => {
     const chart = useRef<ILineChart | null>(null);
 
     const chartData = {
@@ -117,7 +117,7 @@ const LineChart: React.FC<IChartData> = ({ xData, yData, className }) => {
     };
 
     return (
-        <div className={`chart-wrap ${className}`}>
+        <div className='chart-wrap w-[33.33%]'>
             <Line ref={chart}
                   className="chart"
                   data={chartData}

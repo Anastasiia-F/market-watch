@@ -67,9 +67,9 @@ export default function Home() {
                     <span className="bg grow"></span>
                 </h2>
                 <div className="charts flex flex-wrap">
-                    <LineChart xData={DJIA.TimeInfo.Ticks} yData={DJIAData} className="w-[33.33%]" />
-                    <LineChart xData={GDOW.TimeInfo.Ticks} yData={GDOWData} className="w-[33.33%]" />
-                    <LineChart xData={NASDAQ.TimeInfo.Ticks} yData={NASDAQData} className="w-[33.33%]" />
+                    <LineChart xData={DJIA.TimeInfo.Ticks} yData={DJIAData} />
+                    <LineChart xData={GDOW.TimeInfo.Ticks} yData={GDOWData} />
+                    <LineChart xData={NASDAQ.TimeInfo.Ticks} yData={NASDAQData} />
                 </div>
             </section>
             <section>
@@ -78,34 +78,33 @@ export default function Home() {
                     <span className="bg grow"></span>
                 </h2>
                 <div className="flex">
-                    <div className="flex w-[50%]">
-                        <div className="charts grow flex flex-wrap">
-                            <BarChart xData={['Q1', 'Q2', 'Q3', 'Q4']}
-                                      yData={[540, 325, 702, 620]}
-                                      callBack={makeBlockActive}
-                                      className="grow h-[100%]" />
+                        <div className="flex w-[50%]">
+                            <div className="charts grow flex flex-wrap">
+                                <BarChart xData={['Q1', 'Q2', 'Q3', 'Q4']}
+                                          yData={[540, 325, 702, 620]}
+                                          callBack={makeBlockActive} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="card-wrap w-[50%]">
-                        <Card className={classNames({ 'p-card-active': block_1 })} title="First block" subTitle="Card subtitle">
+                        <div className="card-wrap w-[50%]">
+                        <Card className={classNames({ 'p-card-active': blocks.block_0 })} title="First block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': block_2 })} title="Second block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': blocks.block_1 })} title="Second block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': block_3 })} title="Third block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': blocks.block_2 })} title="Third block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                             </p>
                         </Card>
-                        <Card className={classNames({ 'p-card-active': block_4 })} title="Fourth block" subTitle="Card subtitle">
+                        <Card className={classNames({ 'p-card-active': blocks.block_3 })} title="Fourth block" subTitle="Card subtitle">
                             <p className="m-0">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                                 numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!

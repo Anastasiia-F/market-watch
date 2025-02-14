@@ -14,10 +14,13 @@ type ILineChart = Chart<'line', number[], unknown> & { options: IChartOptions };
 type IBarChart = Chart<'bar', number[], unknown> & { options: IChartOptions };
 
 interface IChartData {
-    className?: string;
-    callBack?: (data: number) => void;
     xData: Array<number | string>;
     yData: Array<number | string>;
 }
 
-export type { IChartOptions, ILineChart, IChartData, IBarChart };
+interface IBarChartData extends IChartData {
+    callBack: (data: number) => void;
+    activeIndex: number | null;
+}
+
+export type { IChartOptions, ILineChart, IChartData, IBarChart, IBarChartData };

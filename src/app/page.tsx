@@ -3,9 +3,9 @@
 import React, { Fragment, useState } from 'react';
 import LineChart from '@/app/_components/charts/lineChart';
 import classNames from 'classnames';
-import DJIA from '@/app/_components/charts/chartsMock/DJIA.json';
-import NASDAQ from '@/app/_components/charts/chartsMock/NASDAQ.json';
-import GDOW from '@/app/_components/charts/chartsMock/GDOW.json';
+import DJIA from '@/app/_mocks/chartMocks/DJIA.json';
+import NASDAQ from '@/app/_mocks/chartMocks/NASDAQ.json';
+import GDOW from '@/app/_mocks/chartMocks/GDOW.json';
 import Message from '@/app/_components/message/message';
 import BarChart from '@/app/_components/charts/barChart';
 import { Card } from 'primereact/card';

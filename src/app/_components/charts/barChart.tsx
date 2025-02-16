@@ -12,7 +12,7 @@ ChartJS.defaults.font.family = "'Lato', sans-serif";
 const BarChart: React.FC<IBarChartData> = ({ data, callBack }) => {
     const chart = useRef<IBarChart | null>(null);
 
-    const colors = data.map((bar) => bar.hoverColor);
+    const colors: string[] = data.map((bar) => bar.hoverColor);
 
     const chartData = {
         labels: data.map((bar) => bar.x),

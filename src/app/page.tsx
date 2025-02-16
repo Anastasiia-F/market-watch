@@ -1,6 +1,6 @@
 "use client"
 
-import React, { Fragment, useState, useCallback } from 'react';
+import React, { Fragment, useState, useCallback, useRef } from 'react';
 import classNames from 'classnames';
 import { Card } from 'primereact/card';
 import LineChart from '@/app/_components/charts/lineChart';
@@ -16,7 +16,7 @@ const DJIAData = DJIA.Series[0].DataPoints.flat();
 const NASDAQData = NASDAQ.Series[0].DataPoints.flat();
 const GDOWData = GDOW.Series[0].DataPoints.flat();
 
-const mapData = (data) => {
+const mapData = (data: typeof cardsMock.data[number]):IChartItem  => {
     return {
         ...data,
         isActive: false
@@ -29,23 +29,21 @@ export default function Home() {
         cardsMock.data.map((item) => mapData(item))
     );
 
-    const barHoverHandler = useCallback((() => {
-        let prevIndex = -1;
+    const prevIndexRef = useRef<number>(-1);
 
-        return (index: number) => {
-            if(index !== prevIndex) {
-                prevIndex = index;
-                setBarChartItems((items) => {
-                    return items.map((item) => {
-                        return {
-                            ...item,
-                            isActive: item.id === index + 1
-                        }
-                    })
-                });
-            }
+    const barHoverHandler = useCallback((index: number) => {
+        if(index !== prevIndexRef.current) {
+            prevIndexRef.current = index;
+            setBarChartItems((items) => {
+                return items.map((item) => {
+                    return {
+                        ...item,
+                        isActive: item.id === index + 1
+                    }
+                })
+            });
         }
-    })(), []);
+    }, []);
 
 
     return (

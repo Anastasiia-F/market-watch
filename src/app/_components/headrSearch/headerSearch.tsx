@@ -19,7 +19,7 @@ const HeaderSearch = () => {
                     aria-label="Filter" />
             <OverlayPanel ref={overlayRef}
                           appendTo={wrapRef.current}>
-                <InputText placeholder="searc"
+                <InputText placeholder="Search"
                            className="w-[1232px]" />
             </OverlayPanel>
         </div>

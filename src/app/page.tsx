@@ -1,39 +1,52 @@
 "use client"
 
-import React, { Fragment, useState } from 'react';
-import LineChart from '@/app/_components/charts/lineChart';
+import React, { Fragment, useState, useCallback } from 'react';
 import classNames from 'classnames';
+import { Card } from 'primereact/card';
+import LineChart from '@/app/_components/charts/lineChart';
 import DJIA from '@/app/_mocks/chartMocks/DJIA.json';
 import NASDAQ from '@/app/_mocks/chartMocks/NASDAQ.json';
 import GDOW from '@/app/_mocks/chartMocks/GDOW.json';
 import Message from '@/app/_components/message/message';
 import BarChart from '@/app/_components/charts/barChart';
-import { Card } from 'primereact/card';
+import cardsMock from '@/app/_mocks/cardsMock.json';
+import IChartItem from '@/app/_models/IChartItem';
 
 const DJIAData = DJIA.Series[0].DataPoints.flat();
 const NASDAQData = NASDAQ.Series[0].DataPoints.flat();
 const GDOWData = GDOW.Series[0].DataPoints.flat();
 
-interface Blocks {
-    [key: string]: boolean;
+const mapData = (data) => {
+    return {
+        ...data,
+        isActive: false
+    }
 }
 
 export default function Home() {
 
-    const [blocks, setBlocks] = useState<Blocks>({
-        block_0: false,
-        block_1: false,
-        block_2: false,
-        block_3: false,
-    });
+    const [barChartItems, setBarChartItems] = useState<IChartItem[]>(
+        cardsMock.data.map((item) => mapData(item))
+    );
 
-    const makeBlockActive = (id: number) => {setBlocks({
-            block_0: id === 0,
-            block_1: id === 1,
-            block_2: id === 2,
-            block_3: id === 3,
-        });
-    };
+    const barHoverHandler = useCallback((() => {
+        let prevIndex = -1;
+
+        return (index: number) => {
+            if(index !== prevIndex) {
+                prevIndex = index;
+                setBarChartItems((items) => {
+                    return items.map((item) => {
+                        return {
+                            ...item,
+                            isActive: item.id === index + 1
+                        }
+                    })
+                });
+            }
+        }
+    })(), []);
+
 
     return (
         <Fragment>
@@ -57,41 +70,31 @@ export default function Home() {
                 <div className="flex">
                         <div className="flex w-[50%]">
                             <div className="charts grow flex flex-wrap">
-                                <BarChart xData={['Q1', 'Q2', 'Q3', 'Q4']}
-                                          yData={[540, 325, 702, 620]}
-                                          callBack={makeBlockActive} />
+                                <BarChart data={barChartItems}
+                                          callBack={barHoverHandler} />
                             </div>
                         </div>
                         <div className="card-wrap w-[50%]">
-                        <Card className={classNames({ 'p-card-active': blocks.block_0 })} title="First block" subTitle="Card subtitle">
-                            <p className="m-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                                numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                            </p>
-                        </Card>
-                        <Card className={classNames({ 'p-card-active': blocks.block_1 })} title="Second block" subTitle="Card subtitle">
-                            <p className="m-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                                numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                            </p>
-                        </Card>
-                        <Card className={classNames({ 'p-card-active': blocks.block_2 })} title="Third block" subTitle="Card subtitle">
-                            <p className="m-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                                numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                            </p>
-                        </Card>
-                        <Card className={classNames({ 'p-card-active': blocks.block_3 })} title="Fourth block" subTitle="Card subtitle">
-                            <p className="m-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                                numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                            </p>
-                        </Card>
+                            {
+                                barChartItems.map((item, index) => {
+                                    return (
+                                        <Card className={classNames({ 'p-card-active': item.isActive })}
+                                              key={item.id}
+                                              onMouseEnter={() => {barHoverHandler(index)}}
+                                              onMouseLeave={() => {barHoverHandler(-1)}}
+                                              title={item.title}
+                                              subTitle={item.subTitle}>
+                                            <p className="m-0">{item.text}</p>
+                                        </Card>
+                                    )
+                                })
+                            }
                     </div>
                 </div>
             </section>
 
             <Message />
+
         </Fragment>
     );
 }

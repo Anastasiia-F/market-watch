@@ -1,5 +1,6 @@
 import { Chart, ChartOptions } from 'chart.js';
 import { LineAnnotationOptions } from 'chartjs-plugin-annotation';
+import IChartItem from '@/app/_models/IChartItem';
 
 interface IChartOptions extends ChartOptions<'line'> {
     plugins: {
@@ -18,9 +19,9 @@ interface IChartData {
     yData: Array<number | string>;
 }
 
-interface IBarChartData extends IChartData {
+interface IBarChartData {
+    data: IChartItem[],
     callBack: (data: number) => void;
-    activeIndex: number | null;
 }
 
 export type { IChartOptions, ILineChart, IChartData, IBarChart, IBarChartData };

@@ -5,6 +5,7 @@ const Message = () => {
     const toast = useRef<Toast | null>(null);
 
     useEffect(() => {
+        toast.current!.clear();
         toast.current!.show({
             severity: 'info',
             detail: 'This website is currently under development. All data displayed is for testing purposes only and not real.',

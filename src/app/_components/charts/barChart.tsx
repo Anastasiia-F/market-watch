@@ -9,33 +9,22 @@ ChartJS.register(CategoryScale);
 ChartJS.register(annotationPlugin);
 ChartJS.defaults.font.family = "'Lato', sans-serif";
 
-const BarChart: React.FC<IBarChartData> = ({ xData, yData, callBack }) => {
+const BarChart: React.FC<IBarChartData> = ({ data, callBack }) => {
     const chart = useRef<IBarChart | null>(null);
 
+    const colors = data.map((bar) => bar.hoverColor);
+
     const chartData = {
-        labels: xData,
+        labels: data.map((bar) => bar.x),
         datasets: [
             {
                 label: 'Sales',
-                data: yData,
-                backgroundColor: [
-                    'rgba(255, 159, 64, 0.4)',
-                    'rgba(75, 192, 192, 0.4)',
-                    'rgba(54, 162, 235, 0.4)',
-                    'rgba(153, 102, 255, 0.4)'
-                ],
-                hoverBackgroundColor: [
-                    'rgb(255, 159, 64)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)'
-                ],
-                borderColor: [
-                    'rgb(255, 159, 64)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)'
-                ],
+                data: data.map((bar) => bar.y),
+                backgroundColor: data.map((bar) => {
+                    return bar.isActive ? bar.hoverColor : bar.color;
+                }),
+                hoverBackgroundColor: colors,
+                borderColor: colors,
                 borderWidth: 1
             }
         ]
@@ -117,9 +106,9 @@ const BarChart: React.FC<IBarChartData> = ({ xData, yData, callBack }) => {
     return (
         <div className='chart-wrap grow h-[100%]'>
             <Bar ref={chart}
-                  className="chart"
-                  data={chartData}
-                  options={chartOptions}
+                 className="chart"
+                 data={chartData}
+                 options={chartOptions}
                  plugins={[onLeave]} />
         </div>
     );
